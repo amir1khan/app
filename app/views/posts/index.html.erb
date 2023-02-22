@@ -1,0 +1,44 @@
+
+<nav class="navbar  navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="#">Talking ThoughTs</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-light" aria-current="page" href="/posts/new">Create Post</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light" type="submit">Search</button>
+    </form>   
+    </div>
+  </div>
+</nav>
+<div class="d-flex align-items-center justify-content-center "style="margin: 1rem; border-radius: 0px;">
+    <div class="align-items-center justify-content-center">
+      <% @posts.each do |post| %>
+      <div class="card mb-3 text-center shadow" style="width: 35rem; border-radius: 0px;">
+        <div class="card-body">
+          <h5 class="card-title text-success"><%= post.title %></h5><hr>
+          <p class="card-text"><%= post.description  %></p>
+        </div>
+        <div class="col-sm-6" style="margin-left: 21rem;">
+          <%= link_to 'Show', post, class: "col-sm-3 text-success"%>
+          <%= link_to 'Edit', edit_post_path(post), method: :GET, class: "text-dark col-sm-3" %>
+          <%= link_to 'delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?'}, class: "text-danger col-sm-3" %>
+        </div>
+      </div>
+    <% end %>
+   </div>
+</div>
+<div class="d-flex align-items-center justify-content-center mb-5 mt-2">
+   <%= will_paginate(@things, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'pagination-lg align-items-center ') %>
+</div>
+
+
+
+
